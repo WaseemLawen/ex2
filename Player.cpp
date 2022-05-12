@@ -5,7 +5,7 @@ using namespace std;
 
 
 
-Player::Player(char* name,int maxHP,int force){
+Player::Player(const char* name,int maxHP,int force){
     this->name = name;
     this->maxHP=maxHP;
     this->force=force;
@@ -19,7 +19,7 @@ void printPlayerInfo(const char* name, int level, int force, int hp, int coins){
     cout<< "Name: "<<name<<endl;
     cout<<"Level: "<< level<<endl;
     cout<<"Force: "<< force << endl;
-    cout<< "HP: "<< hp<<endl;
+    cout<< "HP: "<< hp <<endl;
     cout << "Coins: "<< coins<<endl;
 }
 void Player::printInfo(){

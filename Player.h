@@ -1,7 +1,6 @@
 #define DEFAULT_FORCE 5
 #define MAX_HP 100
 
-
 class Player{
     const char* name;
     int maxHP;
@@ -23,6 +22,7 @@ class Player{
     void addCoins(int profit);
     bool pay(int payment);
     int getAttackStrength();
+    Player& operator=(const Player& other) = default;
     ~Player();
 };
 

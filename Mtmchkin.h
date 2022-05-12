@@ -4,6 +4,7 @@
 
 #ifndef EX2_GAME_H
 #define EX2_GAME_H
+#include "Player.cpp"
 #include "Card.h"
 #include <iostream>
 
@@ -28,7 +29,6 @@ public:
      *      An instance of Mtmchkin
     */
     Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
-
 
     /*
      * Play the next Card - according to the instruction in the exercise document
@@ -60,7 +60,12 @@ public:
     //TODO: complete the Mtmchkin class.
 
 private:
-    //TODO: complete the Mtmchkin class.
+
+    Player player();
+    const Card* card;
+    GameStatus status=GameStatus::MidGame;
+    int numOfCards;
+    int currCard=0;
 
 };
 
