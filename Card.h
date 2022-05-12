@@ -1,10 +1,10 @@
 //
 // Created by Daniel_Meents on 07/04/2022.
 //
+#include <string>
 #ifndef EX2_Card_H
 #define EX2_Card_H
-
-#include <string>
+#pragma once
 #include "Player.h"
 #include "utilities.h"
 

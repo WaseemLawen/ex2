@@ -4,9 +4,12 @@
 
 #ifndef EX2_GAME_H
 #define EX2_GAME_H
-#include "Player.cpp"
+#pragma once
 #include "Card.h"
+#include "Player.h"
 #include <iostream>
+#include <string>
+using std::string;
 
 /*
  * GameStatus:
@@ -29,6 +32,9 @@ public:
      *      An instance of Mtmchkin
     */
     Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCards);
+    Mtmchkin(const Mtmchkin& game);
+    ~Mtmchkin();
+    Mtmchkin& operator=(const Mtmchkin& other);
 
     /*
      * Play the next Card - according to the instruction in the exercise document
@@ -61,11 +67,12 @@ public:
 
 private:
 
-    Player player();
-    const Card* card;
-    GameStatus status=GameStatus::MidGame;
-    int numOfCards;
-    int currCard=0;
+    string m_playerName;
+    Player m_player;
+    Card* m_cardArr;
+    GameStatus m_status;
+    int m_numOfCards;
+    int m_currCard;
 
 };
 

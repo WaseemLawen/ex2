@@ -1,17 +1,22 @@
 #define DEFAULT_FORCE 5
 #define MAX_HP 100
+#include <string>
+using std::string;
+using std::iostream;
 
+#pragma once
 class Player{
-    const char* name;
-    int maxHP;
-    int force;
-    int level=1;
-    int HP=MAX_HP;
-    int coins=0;
+    string m_name;
+    int m_maxHP;
+    int m_force;
+    int m_level;
+    int m_HP;
+    int m_coins;
 
     public:
-    Player(const char* name,int maxHP=MAX_HP,int force=DEFAULT_FORCE);
-    Player(const Player&);
+    Player()=default;
+    Player(string name,int maxHP=MAX_HP,int force=DEFAULT_FORCE);
+    Player(const Player& player)=default;
     void printInfo();
     void levelUp();
     int getLevel();
@@ -23,6 +28,6 @@ class Player{
     bool pay(int payment);
     int getAttackStrength();
     Player& operator=(const Player& other) = default;
-    ~Player();
+    ~Player() = default;
 };
 

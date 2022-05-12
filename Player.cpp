@@ -1,76 +1,85 @@
 #include <iostream>
+#include <string>
+
+#ifndef EX2_PLAYER
+#define EX2_PLAYER
 #include "Player.h"
 #include "utilities.h"
+
 using namespace std;
 
 
 
-Player::Player(const char* name,int maxHP,int force){
-    this->name = name;
-    this->maxHP=maxHP;
-    this->force=force;
-}
-Player::~Player(){
-    delete[] name;
+Player::Player(string name,int maxHP,int force) :
+    m_name(name),
+    m_maxHP(maxHP),
+    m_force(force),
+    m_level(1),
+    m_HP(maxHP),
+    m_coins(0)
+
+{
+    if(maxHP<0)
+    {
+        m_maxHP = MAX_HP;
+    }
+    if(force<0)
+    {
+        m_force = DEFAULT_FORCE;
+    }
+
 }
 
-void printPlayerInfo(const char* name, int level, int force, int hp, int coins){
-    cout<< "Player Details: " << endl;
-    cout<< "Name: "<<name<<endl;
-    cout<<"Level: "<< level<<endl;
-    cout<<"Force: "<< force << endl;
-    cout<< "HP: "<< hp <<endl;
-    cout << "Coins: "<< coins<<endl;
-}
+
 void Player::printInfo(){
-    printPlayerInfo(name,level,force,HP,coins);
+    printPlayerInfo(m_name.c_str(),m_level,m_force,m_HP,m_coins);
 }
 void Player::levelUp(){
-    if(level==10){
+    if(m_level==10){
         return;
     }
     else{
-        level++;
+        m_level++;
     }
 }
 
 int Player::getLevel(){
-    return level;
+    return m_level;
 }
 
 void Player::buff(int strengthen){
-    force+=strengthen;
+    m_force+=strengthen;
 }
 
 void Player::heal(int healing){
-    if(HP+healing>=maxHP){
-        HP=maxHP;
+    if(m_HP+healing>=m_maxHP){
+        m_HP=m_maxHP;
     }
     else{
-        HP+=healing;
+        m_HP+=healing;
     }
 }
 
 void Player::damage(int damage_points){
-    if(HP-damage_points<=0){
-        HP=0;
+    if(m_HP-damage_points<=0){
+        m_HP=0;
     }
     else{
-        HP-=damage_points;
+        m_HP-=damage_points;
     }
 }
 
 bool Player::isKnockedOut(){
-    return !HP;
+    return !m_HP;
 }
 
 void Player::addCoins(int profit){
-    coins+=profit;
+    m_coins+=profit;
 }
 
 bool Player::pay(int payment){
-    if(coins>=payment){
-        coins-=payment;
+    if(m_coins>=payment){
+        m_coins-=payment;
         return true;
     }
     else{
@@ -78,5 +87,7 @@ bool Player::pay(int payment){
     }
 }
 int Player::getAttackStrength(){
-    return (level+force);
+    return (m_level+m_force);
 }
+
+#endif
