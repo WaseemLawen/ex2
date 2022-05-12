@@ -15,7 +15,7 @@ Player::Player(string name,int maxHP,int force) :
     m_maxHP(maxHP),
     m_force(force),
     m_level(1),
-    m_HP(maxHP),
+    m_HP(m_maxHP),
     m_coins(0)
 
 {
@@ -48,10 +48,16 @@ int Player::getLevel(){
 }
 
 void Player::buff(int strengthen){
+    if(strengthen<=0){
+        return;
+    }
     m_force+=strengthen;
 }
 
 void Player::heal(int healing){
+    if(healing<0){
+        return;
+    }
     if(m_HP+healing>=m_maxHP){
         m_HP=m_maxHP;
     }
@@ -61,6 +67,9 @@ void Player::heal(int healing){
 }
 
 void Player::damage(int damage_points){
+    if(damage_points <0){
+        return;
+    }
     if(m_HP-damage_points<=0){
         m_HP=0;
     }
@@ -74,12 +83,19 @@ bool Player::isKnockedOut(){
 }
 
 void Player::addCoins(int profit){
+    if(profit < 0){
+        return;
+    }
     m_coins+=profit;
 }
 
 bool Player::pay(int payment){
     if(m_coins>=payment){
+        if(payment > 0)
+        {
         m_coins-=payment;
+        }
+
         return true;
     }
     else{

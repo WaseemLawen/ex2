@@ -40,7 +40,7 @@ void Card::applyEncounter(Player& player) const{
         }
         break;}
         case buff:{
-        int enforcing = m_stats.force;
+        int enforcing = m_stats.buff;
         if(player.pay(cost)){
             player.buff(enforcing);
         }
