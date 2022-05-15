@@ -17,12 +17,14 @@ Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCard
     m_currCard(0)
     
 {
-    for (int i=0; i<numOfCards; i++){
+    for (int i=0; i<numOfCards; i++)
+    {
         m_cardArr[i] = cardsArray[i];
     }
 }
 
-Mtmchkin::~Mtmchkin(){
+Mtmchkin::~Mtmchkin()
+{
     delete[] m_cardArr;
 }
 
@@ -34,16 +36,20 @@ Mtmchkin::Mtmchkin(const Mtmchkin& game):
     m_numOfCards(game.m_numOfCards),
     m_currCard(0)
 {
-    for (int i=0; i<m_numOfCards; i++){
+    for (int i=0; i<m_numOfCards; i++)
+    {
         m_cardArr[i] = game.m_cardArr[i];
     }
 }
 
-Mtmchkin& Mtmchkin :: operator=(const Mtmchkin& other){
-    if(this==&other){
+Mtmchkin& Mtmchkin :: operator=(const Mtmchkin& other)
+{
+    if(this==&other)
+    {
         return *this;
     }
-    else{
+    else
+    {
         delete[] m_cardArr;
         m_playerName = other.m_playerName;
         m_player = other.m_player;
@@ -52,7 +58,8 @@ Mtmchkin& Mtmchkin :: operator=(const Mtmchkin& other){
         m_numOfCards = other.m_numOfCards;
         m_currCard = other.m_currCard;
 
-        for(int i=0; i<m_numOfCards; i++){
+        for(int i=0; i<m_numOfCards; i++)
+        {
             m_cardArr[i] = other.m_cardArr[i];
         }
     }
@@ -61,33 +68,41 @@ Mtmchkin& Mtmchkin :: operator=(const Mtmchkin& other){
 
 }
 
-GameStatus Mtmchkin::getGameStatus() const{
+GameStatus Mtmchkin::getGameStatus() const
+{
     return m_status;
 }
 
-void Mtmchkin::playNextCard(){
+void Mtmchkin::playNextCard()
+{
     Card playingCard = m_cardArr[m_currCard];
     playingCard.printInfo();
     playingCard.applyEncounter(m_player);
     m_player.printInfo();
 
-    if(m_currCard == m_numOfCards-1){
+    if(m_currCard == m_numOfCards-1)
+    {
         m_currCard = 0;
     }
-    else{
+    else
+    {
         m_currCard ++;
     }
-    if(m_player.getLevel()==10){
+    if(m_player.getLevel()==10)
+    {
         m_status = GameStatus:: Win;
     }
-    if(m_player.isKnockedOut()){
+    if(m_player.isKnockedOut())
+    {
         m_status = GameStatus :: Loss;
     }
 
 }
 
-bool Mtmchkin::isOver() const {
-    if(m_status == GameStatus::Win || m_status == GameStatus::Loss){
+bool Mtmchkin::isOver() const 
+{
+    if(m_status == GameStatus::Win || m_status == GameStatus::Loss)
+    {
         return true;
     }
     return false;

@@ -5,7 +5,8 @@ using std::string;
 using std::iostream;
 
 #pragma once
-class Player{
+class Player
+{
     string m_name;
     int m_maxHP;
     int m_force;

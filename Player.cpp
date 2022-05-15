@@ -31,66 +31,86 @@ Player::Player(string name,int maxHP,int force) :
 }
 
 
-void Player::printInfo(){
+void Player::printInfo()
+{
     printPlayerInfo(m_name.c_str(),m_level,m_force,m_HP,m_coins);
 }
-void Player::levelUp(){
-    if(m_level==10){
+void Player::levelUp()
+{
+    if(m_level==10)
+    {
         return;
     }
-    else{
+    else
+    {
         m_level++;
     }
 }
 
-int Player::getLevel(){
+int Player::getLevel()
+{
     return m_level;
 }
 
-void Player::buff(int strengthen){
-    if(strengthen<=0){
+void Player::buff(int strengthen)
+{
+    if(strengthen<=0)
+    {
         return;
     }
     m_force+=strengthen;
 }
 
-void Player::heal(int healing){
-    if(healing<0){
+void Player::heal(int healing)
+{
+    if(healing<0)
+    {
         return;
     }
-    if(m_HP+healing>=m_maxHP){
+    if(m_HP+healing>=m_maxHP)
+    {
         m_HP=m_maxHP;
     }
-    else{
+    else
+    {
         m_HP+=healing;
     }
 }
 
-void Player::damage(int damage_points){
-    if(damage_points <0){
+void Player::damage(int damage_points)
+{
+    if(damage_points <0)
+    {
         return;
     }
-    if(m_HP-damage_points<=0){
+    if(m_HP-damage_points<=0)
+    {
         m_HP=0;
     }
-    else{
+    else
+    {
         m_HP-=damage_points;
     }
 }
 
-bool Player::isKnockedOut(){
+bool Player::isKnockedOut()
+{
     return !m_HP;
 }
 
-void Player::addCoins(int profit){
-    if(profit < 0){
+void Player::addCoins(int profit)
+{
+    if(profit < 0)
+    {
         return;
     }
     m_coins+=profit;
 }
 
-bool Player::pay(int payment){
-    if(m_coins>=payment){
+bool Player::pay(int payment)
+{
+    if(m_coins>=payment)
+    {
         if(payment > 0)
         {
         m_coins-=payment;
@@ -98,11 +118,13 @@ bool Player::pay(int payment){
 
         return true;
     }
-    else{
+    else
+    {
         return false;
     }
 }
-int Player::getAttackStrength(){
+int Player::getAttackStrength()
+{
     return (m_level+m_force);
 }
 

@@ -14,73 +14,93 @@ Card::Card(CardType type, const CardStats& stats) :
 
     }
 
-void Card::applyEncounter(Player& player) const{
+void Card::applyEncounter(Player& player) const
+{
     CardType const battle = CardType::Battle;
     CardType const buff = CardType::Buff;
     CardType const heal = CardType::Heal;
     CardType const treasure = CardType::Treasure;
-    int cost = m_stats.cost;
+    int costs = m_stats.cost;
     bool isWin=true;
-    switch(m_effect){
-        case battle:{
+    switch(m_effect)
+    {
+        case battle:
+        {
         int player_strength = player.getAttackStrength();
         int card_strength = m_stats.force;
-        if(card_strength>player_strength){
+        if(card_strength>player_strength)
+        {
             isWin = false;
             int HPLoss = m_stats.hpLossOnDefeat;
             player.damage(HPLoss);
             printBattleResult(isWin);
 
         }
-        else if(player_strength>=card_strength){
+        else if(player_strength>=card_strength)
+        {
             int coins = m_stats.loot;
             player.levelUp();
             player.addCoins(coins);
             printBattleResult(isWin);
         }
-        break;}
-        case buff:{
+        break;
+        }
+        case buff:
+        {
         int enforcing = m_stats.buff;
-        if(player.pay(cost)){
+        if(player.pay(costs))
+        {
             player.buff(enforcing);
         }
-        break;}
-        case heal:{
+        break;
+        }
+        case heal:
+        {
         int healing = m_stats.heal;
-        if(player.pay(cost)){
+        if(player.pay(costs))
+        {
             player.heal(healing);
         }
-        break;}
-        case treasure:{
+        break;
+        }
+        case treasure:
+        {
         int profit = m_stats.loot;
         player.addCoins(profit);
-        break;}
+        break;
+        }
 
     }
 }
 
 
 
-void Card::printInfo() const{
+void Card::printInfo() const
+{
     CardType const battle = CardType::Battle;
     CardType const buff = CardType::Buff;
     CardType const heal = CardType::Heal;
     CardType const treasure = CardType::Treasure;
     const CardStats& card = m_stats;
-    switch(m_effect){
-        case battle:{
+    switch(m_effect)
+    {
+        case battle:
+        {
             printBattleCardInfo(card);
             break;
         }
-        case buff:{
+        case buff:
+        {
             printBuffCardInfo(card);
             break;
         }
-        case heal:{
+        case heal:
+        {
             printHealCardInfo(card);
             break;
         }
-        case treasure:{
+        case treasure:
+        {
             printTreasureCardInfo(card);
             break;
         }
